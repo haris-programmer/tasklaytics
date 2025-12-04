@@ -1,0 +1,260 @@
+/* =========================================
+   ListView Component Styles
+   Table View with Neumorphic Design
+   ========================================= */
+
+.list-view {
+  padding: var(--space-lg);
+  height: 100%;
+  overflow: auto;
+}
+
+.list-view__container {
+  background: var(--bg-card);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--neu-inset);
+  padding: var(--space-md);
+  overflow: auto;
+}
+
+/* ---- Task Table ---- */
+.task-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+}
+
+.task-table__th {
+  padding: var(--space-sm) var(--space-md);
+  text-align: left;
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  background: var(--bg-input);
+  border-bottom: 2px solid var(--border-subtle);
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.task-table__th--id {
+  width: 80px;
+}
+
+.task-table__th--title {
+  min-width: 250px;
+}
+
+.task-table__th--status {
+  width: 140px;
+}
+
+.task-table__th--difficulty {
+  width: 100px;
+}
+
+.task-table__th--points {
+  width: 80px;
+}
+
+.task-table__th--type {
+  width: 100px;
+}
+
+.task-table__th--assignee {
+  width: 120px;
+}
+
+.task-table__th--tags {
+  width: 180px;
+}
+
+.task-table__row {
+  transition: background var(--transition-fast);
+}
+
+.task-table__row:hover {
+  background: var(--bg-input);
+}
+
+.task-table__td {
+  padding: var(--space-sm) var(--space-md);
+  border-bottom: 1px solid var(--border-subtle);
+  color: var(--text-secondary);
+}
+
+.task-table__td--id .task-id {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--text-muted);
+}
+
+.task-table__td--title .task-title {
+  color: var(--text-primary);
+  font-weight: 500;
+}
+
+.task-table__td--points .task-points {
+  font-family: var(--font-mono);
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.task-table__td--type .task-type {
+  font-size: 12px;
+  color: var(--text-muted);
+}
+
+.task-table__td--assignee .task-assignee {
+  font-size: 12px;
+  color: var(--text-secondary);
+}
+
+/* ---- Status Badges ---- */
+.status-badge {
+  display: inline-block;
+  padding: 4px 8px;
+  border-radius: var(--radius-sm);
+  font-size: 11px;
+  font-weight: 600;
+  text-align: center;
+  box-shadow: var(--neu-inset-sm);
+  min-width: 90px;
+}
+
+.status-badge--backlog {
+  background: var(--bg-input);
+  color: var(--text-muted);
+}
+
+.status-badge--ready {
+  background: rgba(30, 167, 255, 0.15);
+  color: var(--color-info);
+}
+
+.status-badge--progress {
+  background: rgba(245, 158, 11, 0.15);
+  color: var(--color-warning);
+}
+
+.status-badge--review {
+  background: rgba(80, 81, 249, 0.15);
+  color: var(--color-primary);
+}
+
+.status-badge--done {
+  background: rgba(34, 197, 94, 0.15);
+  color: var(--color-success);
+}
+
+/* ---- Difficulty Badges ---- */
+.difficulty-badge {
+  display: inline-block;
+  padding: 4px 8px;
+  border-radius: var(--radius-sm);
+  font-size: 11px;
+  font-weight: 600;
+  font-family: var(--font-mono);
+  text-align: center;
+  box-shadow: var(--neu-inset-sm);
+  min-width: 40px;
+}
+
+.difficulty-badge--xs {
+  background: rgba(34, 197, 94, 0.15);
+  color: var(--color-success);
+}
+
+.difficulty-badge--s {
+  background: rgba(30, 167, 255, 0.15);
+  color: var(--color-info);
+}
+
+.difficulty-badge--m {
+  background: var(--bg-input);
+  color: var(--text-muted);
+}
+
+.difficulty-badge--l {
+  background: rgba(245, 158, 11, 0.15);
+  color: var(--color-warning);
+}
+
+.difficulty-badge--xl {
+  background: rgba(255, 107, 107, 0.15);
+  color: var(--color-error);
+}
+
+/* ---- Tags ---- */
+.task-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+}
+
+.tag-chip {
+  padding: 2px 6px;
+  background: var(--bg-input);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-sm);
+  box-shadow: var(--neu-inset-sm);
+  font-size: 10px;
+  color: var(--text-muted);
+  font-family: var(--font-mono);
+}
+
+/* ---- Empty State ---- */
+.list-view__empty {
+  padding: var(--space-2xl);
+  text-align: center;
+  color: var(--text-muted);
+  font-size: 14px;
+}
+
+/* ---- Custom Scrollbar ---- */
+.list-view__container::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+.list-view__container::-webkit-scrollbar-track {
+  background: var(--bg-input);
+  border-radius: var(--radius-sm);
+}
+
+.list-view__container::-webkit-scrollbar-thumb {
+  background: var(--border-color);
+  border-radius: var(--radius-sm);
+}
+
+.list-view__container::-webkit-scrollbar-thumb:hover {
+  background: var(--text-muted);
+}
+
+/* ---- Responsive Adjustments ---- */
+@media (max-width: 1024px) {
+  .task-table__th--tags,
+  .task-table__td--tags {
+    display: none;
+  }
+}
+
+@media (max-width: 768px) {
+  .list-view {
+    padding: var(--space-md);
+  }
+
+  .task-table {
+    font-size: 12px;
+  }
+
+  .task-table__th--type,
+  .task-table__td--type,
+  .task-table__th--assignee,
+  .task-table__td--assignee {
+    display: none;
+  }
+}

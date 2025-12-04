@@ -1,0 +1,181 @@
+/* =========================================
+   3D Neumorphic Button Component
+   Glowing variant with enhanced 3D effect
+   ========================================= */
+
+.neu-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-sm);
+
+  padding: 12px 20px;
+  border: none;
+  border-radius: var(--radius-md);
+
+  font-family: var(--font-primary);
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--text-primary);
+
+  background: linear-gradient(145deg, var(--bg-elevated), var(--bg-card));
+  box-shadow: var(--neu-raised-sm);
+
+  cursor: pointer;
+  transition:
+    box-shadow var(--transition-base),
+    transform var(--transition-fast),
+    background var(--transition-base);
+
+  user-select: none;
+}
+
+.neu-button:hover {
+  box-shadow: var(--neu-raised);
+  transform: translateY(-1px);
+}
+
+.neu-button:active {
+  box-shadow: var(--neu-pressed);
+  transform: translateY(0);
+  background: linear-gradient(145deg, var(--bg-card), var(--bg-elevated));
+}
+
+.neu-button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  box-shadow: var(--neu-raised-sm);
+  transform: none;
+}
+
+/* =========================================
+   PRIMARY GLOW VARIANT - Premium Button
+   ========================================= */
+
+.neu-button--primary-glow {
+  position: relative;
+  padding: 20px 48px;
+  font-size: 1rem;
+  font-weight: 500;
+  font-family: 'Inter', 'DM Sans', sans-serif;
+  color: #ffffff;
+  letter-spacing: 0.02em;
+
+  background: linear-gradient(135deg, rgba(88, 60, 180, 0.4) 0%, rgba(120, 80, 200, 0.5) 30%, rgba(100, 70, 190, 0.35) 70%, rgba(70, 50, 150, 0.4) 100%);
+  border: none;
+  border-radius: 16px;
+
+  cursor: pointer;
+  overflow: hidden;
+
+  backdrop-filter: blur(10px);
+  box-shadow:
+    0 0 60px rgba(130, 90, 220, 0.40),
+    0 0 120px rgba(110, 70, 200, 0.20),
+    inset 0 1px 1px rgba(255, 255, 255, 0.1);
+
+  transition: all 0.3s ease;
+  user-select: none;
+}
+
+.neu-button--primary-glow:hover {
+  box-shadow:
+    0 0 80px rgba(130, 90, 220, 0.50),
+    0 0 150px rgba(110, 70, 200, 0.30),
+    inset 0 1px 1px rgba(255, 255, 255, 0.15);
+}
+
+.neu-button--primary-glow:active {
+  transform: scale(0.98) !important;
+  box-shadow:
+    0 0 20px rgba(130, 90, 220, 0.15),
+    0 0 40px rgba(110, 70, 200, 0.06),
+    inset 0 1px 1px rgba(255, 255, 255, 0.1);
+}
+
+/* Glow layers */
+.neu-button__glow-outer {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 120%;
+  height: 150%;
+
+  background: radial-gradient(ellipse at center, rgba(140, 100, 230, 0.95) 0%, rgba(100, 60, 200, 0.70) 40%, transparent 70%);
+  pointer-events: none;
+  filter: blur(20px);
+}
+
+.neu-button__glow-inner {
+  position: absolute;
+  top: 30%;
+  left: 40%;
+  transform: translate(-50%, -50%);
+  width: 80%;
+  height: 80%;
+
+  background: radial-gradient(ellipse at center, rgba(160, 120, 255, 1.0) 0%, rgba(130, 90, 220, 0.85) 30%, transparent 60%);
+  pointer-events: none;
+  filter: blur(25px);
+}
+
+.neu-button__glow-center {
+  position: absolute;
+  top: 20%;
+  left: 30%;
+  width: 40%;
+  height: 50%;
+
+  background: radial-gradient(ellipse at center, rgba(200, 170, 255, 1.0) 0%, transparent 50%);
+  pointer-events: none;
+  filter: blur(15px);
+}
+
+.neu-button__content {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+}
+
+.neu-button__text {
+  text-shadow: 0 0 20px rgba(200, 180, 255, 0.3);
+}
+
+.neu-button__icon {
+  opacity: 0.85;
+  filter: drop-shadow(0 0 8px rgba(200, 180, 255, 0.3));
+}
+
+/* Icon button variant */
+.neu-button--icon {
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  border-radius: var(--radius-lg);
+}
+
+.neu-button--icon-sm {
+  width: 36px;
+  height: 36px;
+  padding: 0;
+  border-radius: var(--radius-md);
+}
+
+/* Round button variant */
+.neu-button--round {
+  border-radius: var(--radius-round);
+}
+
+/* Success variant */
+.neu-button--success {
+  background: linear-gradient(145deg, #2AD968, var(--color-success));
+}
+
+/* Danger variant */
+.neu-button--danger {
+  background: linear-gradient(145deg, #FF7B7B, var(--color-error));
+}

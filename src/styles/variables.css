@@ -1,0 +1,154 @@
+/* =========================================
+   FocusBook Design System - CSS Variables
+   3D Neumorphic Kanban Theme
+   ========================================= */
+
+:root {
+  /* ---- Typography ---- */
+  --font-primary: 'DM Sans', 'Inter', sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+
+  /* ---- Spacing Scale (8px base) ---- */
+  --space-xs: 4px;
+  --space-sm: 8px;
+  --space-md: 16px;
+  --space-lg: 24px;
+  --space-xl: 32px;
+  --space-2xl: 48px;
+  --space-3xl: 64px;
+
+  /* ---- Border Radius ---- */
+  --radius-sm: 6px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --radius-xl: 16px;
+  --radius-round: 50%;
+
+  /* ---- Transitions ---- */
+  --transition-fast: 150ms ease;
+  --transition-base: 200ms ease;
+  --transition-slow: 300ms ease;
+
+  /* ---- Brand Colors ---- */
+  --color-primary: #5051F9;
+  --color-primary-hover: #4142E0;
+  --color-primary-light: #6B6CFA;
+  --color-primary-glow: rgba(80, 81, 249, 0.4);
+
+  --color-secondary: #1EA7FF;
+  --color-secondary-light: #4BBAFF;
+
+  /* ---- Semantic Colors ---- */
+  --color-success: #22C55E;
+  --color-warning: #F59E0B;
+  --color-error: #FF6B6B;
+  --color-info: #1EA7FF;
+
+  /* ---- Dark Mode (Default) ---- */
+  --bg-page: #0F1419;
+  --bg-card: #151B28;
+  --bg-input: #1A2235;
+  --bg-elevated: #1D2538;
+
+  --text-primary: #FFFFFF;
+  --text-secondary: #898989;
+  --text-tertiary: #768396;
+  --text-muted: #5A5A6E;
+
+  --border-color: #3A3B45;
+  --border-subtle: #2D2E38;
+
+  /* ---- Neumorphic Shadows (Dark Mode) ---- */
+  /* Light source: top-left */
+  --neu-shadow-light: #1D2538;
+  --neu-shadow-dark: #080A0F;
+
+  /* Raised element (convex) - default state */
+  --neu-raised:
+    6px 6px 12px var(--neu-shadow-dark),
+    -6px -6px 12px var(--neu-shadow-light);
+
+  --neu-raised-sm:
+    3px 3px 6px var(--neu-shadow-dark),
+    -3px -3px 6px var(--neu-shadow-light);
+
+  --neu-raised-lg:
+    10px 10px 20px var(--neu-shadow-dark),
+    -10px -10px 20px var(--neu-shadow-light);
+
+  /* Inset element (concave) - pressed/drop zone */
+  --neu-inset:
+    inset 4px 4px 8px var(--neu-shadow-dark),
+    inset -4px -4px 8px var(--neu-shadow-light);
+
+  --neu-inset-sm:
+    inset 2px 2px 4px var(--neu-shadow-dark),
+    inset -2px -2px 4px var(--neu-shadow-light);
+
+  /* Hover state - slightly elevated */
+  --neu-hover:
+    8px 8px 16px var(--neu-shadow-dark),
+    -8px -8px 16px var(--neu-shadow-light);
+
+  /* Active/Pressed state */
+  --neu-pressed:
+    inset 3px 3px 6px var(--neu-shadow-dark),
+    inset -3px -3px 6px var(--neu-shadow-light);
+
+  /* Glow effect for primary elements */
+  --neu-glow-primary:
+    0 0 20px var(--color-primary-glow),
+    6px 6px 12px var(--neu-shadow-dark),
+    -6px -6px 12px var(--neu-shadow-light);
+
+  /* ---- Z-Index Scale ---- */
+  --z-base: 1;
+  --z-dropdown: 100;
+  --z-sticky: 200;
+  --z-modal: 300;
+  --z-dragging: 400;
+}
+
+/* Light Mode Overrides */
+[data-theme="light"] {
+  /* ---- Neumorphic Shadows (Light Mode) ---- */
+  --neu-shadow-light: #FFFFFF;
+  --neu-shadow-dark: #D0D5DD;
+
+  --neu-raised:
+    6px 6px 12px rgba(0, 0, 0, 0.08),
+    -6px -6px 12px rgba(255, 255, 255, 0.8);
+
+  --neu-raised-sm:
+    3px 3px 6px rgba(0, 0, 0, 0.06),
+    -3px -3px 6px rgba(255, 255, 255, 0.7);
+
+  --neu-raised-lg:
+    10px 10px 20px rgba(0, 0, 0, 0.1),
+    -10px -10px 20px rgba(255, 255, 255, 0.9);
+
+  --neu-inset:
+    inset 4px 4px 8px rgba(0, 0, 0, 0.08),
+    inset -4px -4px 8px rgba(255, 255, 255, 0.8);
+
+  --neu-inset-sm:
+    inset 2px 2px 4px rgba(0, 0, 0, 0.06),
+    inset -2px -2px 4px rgba(255, 255, 255, 0.7);
+
+  --neu-hover:
+    8px 8px 16px rgba(0, 0, 0, 0.1),
+    -8px -8px 16px rgba(255, 255, 255, 0.9);
+
+  --neu-pressed:
+    inset 3px 3px 6px rgba(0, 0, 0, 0.08),
+    inset -3px -3px 6px rgba(255, 255, 255, 0.8);
+}
+
+/* Respect reduced motion preference */
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --transition-fast: 0ms;
+    --transition-base: 0ms;
+    --transition-slow: 0ms;
+  }
+}

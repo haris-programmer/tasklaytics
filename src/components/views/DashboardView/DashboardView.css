@@ -1,0 +1,304 @@
+/* =========================================
+   DashboardView Component Styles
+   Neumorphic Design with Inset Panels
+   ========================================= */
+
+.dashboard-view {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-lg);
+  padding: var(--space-lg);
+  height: 100%;
+  overflow-y: auto;
+}
+
+/* ---- Project Brief Card ---- */
+.dashboard-card--brief {
+  background: var(--bg-card);
+  border-radius: var(--radius-lg);
+  padding: var(--space-lg);
+  box-shadow: var(--neu-inset);
+}
+
+.brief-title {
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: var(--space-xs);
+}
+
+.brief-subtitle {
+  font-size: 12px;
+  color: var(--text-muted);
+  margin-bottom: var(--space-md);
+}
+
+.brief-textarea {
+  width: 100%;
+  min-height: 140px;
+  padding: var(--space-md);
+  background: var(--bg-input);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  box-shadow: var(--neu-inset-sm);
+  color: var(--text-primary);
+  font-family: var(--font-primary);
+  font-size: 13px;
+  line-height: 1.6;
+  resize: vertical;
+  transition: border-color var(--transition-base);
+}
+
+.brief-textarea:focus {
+  outline: none;
+  border-color: var(--color-primary);
+}
+
+.brief-textarea::placeholder {
+  color: var(--text-muted);
+}
+
+.brief-readonly-body {
+  padding: var(--space-md);
+  background: var(--bg-input);
+  border-radius: var(--radius-md);
+  box-shadow: var(--neu-inset-sm);
+  color: var(--text-secondary);
+  font-size: 13px;
+  line-height: 1.6;
+  white-space: pre-wrap;
+  min-height: 100px;
+}
+
+.brief-footer {
+  margin-top: var(--space-md);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+}
+
+.brief-actions {
+  display: flex;
+  gap: var(--space-sm);
+  flex-wrap: wrap;
+}
+
+.brief-button {
+  padding: var(--space-sm) var(--space-md);
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  box-shadow: var(--neu-raised-sm);
+  color: var(--text-secondary);
+  font-size: 12px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all var(--transition-base);
+}
+
+.brief-button:hover:not(:disabled) {
+  box-shadow: var(--neu-hover);
+  transform: translateY(-1px);
+}
+
+.brief-button:active:not(:disabled) {
+  box-shadow: var(--neu-pressed);
+  transform: translateY(0);
+}
+
+.brief-button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.brief-button--primary {
+  background: var(--color-primary);
+  color: #ffffff;
+  border-color: var(--color-primary);
+}
+
+.brief-button--primary:hover:not(:disabled) {
+  background: var(--color-primary-hover);
+}
+
+.brief-secondary-text {
+  font-size: 11px;
+  color: var(--text-muted);
+}
+
+/* ---- New Points Section ---- */
+.dashboard-newpoints {
+  margin-top: var(--space-lg);
+  padding-top: var(--space-lg);
+  border-top: 1px solid var(--border-subtle);
+}
+
+.newpoints-textarea {
+  width: 100%;
+  min-height: 100px;
+  padding: var(--space-md);
+  background: var(--bg-input);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  box-shadow: var(--neu-inset-sm);
+  color: var(--text-primary);
+  font-family: var(--font-primary);
+  font-size: 13px;
+  line-height: 1.6;
+  resize: vertical;
+  transition: border-color var(--transition-base);
+}
+
+.newpoints-textarea:focus {
+  outline: none;
+  border-color: var(--color-primary);
+}
+
+.newpoints-textarea::placeholder {
+  color: var(--text-muted);
+}
+
+/* ---- Dashboard Rows ---- */
+.dashboard-row {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: var(--space-md);
+}
+
+.dashboard-row--summary {
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+}
+
+/* ---- Stat Cards ---- */
+.stat-card {
+  background: var(--bg-card);
+  border-radius: var(--radius-lg);
+  padding: var(--space-md);
+  box-shadow: var(--neu-inset);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+}
+
+.stat-card__label {
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.stat-card__value {
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.stat-card__hint {
+  font-size: 11px;
+  color: var(--text-muted);
+}
+
+/* ---- Progress Bar ---- */
+.dashboard-bar {
+  width: 100%;
+  height: 8px;
+  background: var(--bg-input);
+  border-radius: var(--radius-sm);
+  box-shadow: var(--neu-inset-sm);
+  overflow: hidden;
+  margin-top: var(--space-xs);
+}
+
+.dashboard-bar__fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--color-primary), var(--color-primary-light));
+  border-radius: var(--radius-sm);
+  transition: width var(--transition-slow);
+  box-shadow: 0 0 8px var(--color-primary-glow);
+}
+
+/* ---- Dashboard Cards ---- */
+.dashboard-card {
+  background: var(--bg-card);
+  border-radius: var(--radius-lg);
+  padding: var(--space-md);
+  box-shadow: var(--neu-inset);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+}
+
+.dashboard-card__title {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: var(--space-xs);
+}
+
+.dashboard-card__metric-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: var(--space-xs) 0;
+  font-size: 12px;
+  color: var(--text-secondary);
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.dashboard-card__metric-row:last-child {
+  border-bottom: none;
+}
+
+/* ---- Dashboard Lists ---- */
+.dashboard-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+}
+
+.dashboard-list__item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: var(--space-xs) var(--space-sm);
+  background: var(--bg-input);
+  border-radius: var(--radius-sm);
+  box-shadow: var(--neu-inset-sm);
+  gap: var(--space-sm);
+}
+
+.dashboard-list__item-label {
+  font-size: 12px;
+  color: var(--text-secondary);
+  flex: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.dashboard-list__badge {
+  font-size: 10px;
+  color: var(--text-muted);
+  font-family: var(--font-mono);
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+/* ---- Responsive Adjustments ---- */
+@media (max-width: 768px) {
+  .dashboard-view {
+    padding: var(--space-md);
+  }
+
+  .dashboard-row {
+    grid-template-columns: 1fr;
+  }
+
+  .dashboard-row--summary {
+    grid-template-columns: 1fr;
+  }
+}

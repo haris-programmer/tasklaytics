@@ -1,0 +1,582 @@
+/* =========================================
+   AI Bar Component - Glassmorphism & Neumorphic
+   Floating bottom assistant with modern effects
+   ========================================= */
+
+.ai-bar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: var(--z-sticky);
+
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+
+  padding: var(--space-lg) var(--space-xl);
+  margin: var(--space-lg);
+  margin-bottom: 0;
+
+  /* Glassmorphism background */
+  background: linear-gradient(
+    135deg,
+    rgba(21, 27, 40, 0.85) 0%,
+    rgba(29, 37, 56, 0.75) 100%
+  );
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-bottom: none;
+  border-radius: var(--radius-xl) var(--radius-xl) 0 0;
+
+  /* Neumorphic shadow with glow */
+  box-shadow:
+    var(--neu-raised-lg),
+    0 -10px 40px rgba(80, 81, 249, 0.08),
+    inset 0 1px 1px rgba(255, 255, 255, 0.05);
+
+  transition: all var(--transition-base);
+}
+
+/* Ambient Glow Effect */
+.ai-bar__glow {
+  position: absolute;
+  top: -50%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80%;
+  height: 100%;
+
+  background: radial-gradient(
+    ellipse at center,
+    rgba(80, 81, 249, 0.15) 0%,
+    rgba(30, 167, 255, 0.08) 40%,
+    transparent 70%
+  );
+
+  pointer-events: none;
+  filter: blur(40px);
+  opacity: 0.6;
+}
+
+/* =========================================
+   Messages Container
+   ========================================= */
+
+.ai-bar__messages {
+  max-height: 200px;
+  overflow-y: auto;
+  padding-right: var(--space-sm);
+
+  /* Custom scrollbar */
+  scrollbar-width: thin;
+  scrollbar-color: var(--border-color) transparent;
+}
+
+.ai-bar__messages::-webkit-scrollbar {
+  width: 6px;
+}
+
+.ai-bar__messages::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.ai-bar__messages::-webkit-scrollbar-thumb {
+  background: var(--border-color);
+  border-radius: 3px;
+}
+
+.ai-bar__messages::-webkit-scrollbar-thumb:hover {
+  background: var(--text-tertiary);
+}
+
+.ai-messages-container {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+}
+
+/* =========================================
+   Message Bubbles
+   ========================================= */
+
+.ai-message {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+
+  padding: var(--space-md);
+  border-radius: var(--radius-lg);
+
+  background: var(--bg-input);
+  box-shadow: var(--neu-inset-sm);
+
+  animation: slideUp 0.3s ease-out;
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* User Message - Align Right with Blue Accent */
+.ai-message--user {
+  align-self: flex-end;
+  max-width: 80%;
+
+  background: linear-gradient(
+    135deg,
+    rgba(80, 81, 249, 0.15) 0%,
+    rgba(30, 167, 255, 0.1) 100%
+  );
+  border: 1px solid rgba(80, 81, 249, 0.2);
+  box-shadow:
+    var(--neu-raised-sm),
+    0 0 20px rgba(80, 81, 249, 0.1);
+}
+
+/* Assistant Message - Align Left with Purple Accent */
+.ai-message--assistant {
+  align-self: flex-start;
+  max-width: 80%;
+
+  background: linear-gradient(
+    135deg,
+    rgba(140, 100, 230, 0.12) 0%,
+    rgba(100, 60, 200, 0.08) 100%
+  );
+  border: 1px solid rgba(140, 100, 230, 0.15);
+  box-shadow:
+    var(--neu-raised-sm),
+    0 0 20px rgba(140, 100, 230, 0.08);
+}
+
+/* System Message - Centered with Warning Color */
+.ai-message--system {
+  align-self: center;
+  max-width: 90%;
+
+  background: linear-gradient(
+    135deg,
+    rgba(245, 158, 11, 0.12) 0%,
+    rgba(245, 158, 11, 0.06) 100%
+  );
+  border: 1px solid rgba(245, 158, 11, 0.2);
+  box-shadow:
+    var(--neu-inset-sm),
+    0 0 15px rgba(245, 158, 11, 0.08);
+}
+
+/* Message Role Header */
+.ai-message__role {
+  display: flex;
+  align-items: center;
+  gap: var(--space-xs);
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  opacity: 0.8;
+}
+
+.ai-message__icon {
+  font-size: 1rem;
+  filter: drop-shadow(0 0 4px currentColor);
+}
+
+.ai-message--user .ai-message__role {
+  color: var(--color-primary-light);
+}
+
+.ai-message--assistant .ai-message__role {
+  color: #C8B4FF;
+}
+
+.ai-message--system .ai-message__role {
+  color: var(--color-warning);
+}
+
+/* Message Body */
+.ai-message__body {
+  font-size: 0.875rem;
+  line-height: 1.5;
+  color: var(--text-primary);
+  word-wrap: break-word;
+}
+
+/* =========================================
+   Input Row
+   ========================================= */
+
+.ai-bar__input-row {
+  display: flex;
+  align-items: flex-end;
+  gap: var(--space-md);
+}
+
+/* Neumorphic Input Container */
+.ai-input-container {
+  flex: 1;
+  position: relative;
+
+  background: var(--bg-input);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--neu-inset);
+
+  transition: box-shadow var(--transition-base);
+}
+
+.ai-input-container:focus-within {
+  box-shadow:
+    var(--neu-inset),
+    0 0 20px rgba(80, 81, 249, 0.15);
+}
+
+/* Textarea Field */
+.ai-input-field {
+  width: 100%;
+  min-height: 48px;
+  max-height: 120px;
+  padding: var(--space-md);
+
+  font-family: var(--font-primary);
+  font-size: 0.9375rem;
+  line-height: 1.5;
+  color: var(--text-primary);
+
+  background: transparent;
+  border: none;
+  outline: none;
+  resize: none;
+
+  /* Smooth scrolling */
+  overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: var(--border-color) transparent;
+}
+
+.ai-input-field::placeholder {
+  color: var(--text-tertiary);
+  font-style: italic;
+}
+
+.ai-input-field::-webkit-scrollbar {
+  width: 6px;
+}
+
+.ai-input-field::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.ai-input-field::-webkit-scrollbar-thumb {
+  background: var(--border-color);
+  border-radius: 3px;
+}
+
+/* =========================================
+   Control Buttons
+   ========================================= */
+
+.ai-controls {
+  display: flex;
+  gap: var(--space-sm);
+}
+
+.ai-control-button {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 48px;
+  height: 48px;
+  padding: 0;
+  border: none;
+  border-radius: var(--radius-lg);
+
+  background: linear-gradient(145deg, var(--bg-elevated), var(--bg-card));
+  box-shadow: var(--neu-raised-sm);
+
+  font-size: 1.25rem;
+  color: var(--text-secondary);
+  cursor: pointer;
+
+  transition: all var(--transition-base);
+  user-select: none;
+}
+
+.ai-control-button:hover:not(:disabled) {
+  color: var(--text-primary);
+  box-shadow: var(--neu-raised);
+  transform: translateY(-2px);
+}
+
+.ai-control-button:active:not(:disabled) {
+  box-shadow: var(--neu-pressed);
+  transform: translateY(0);
+}
+
+.ai-control-button:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+  box-shadow: var(--neu-inset-sm);
+}
+
+.ai-button__icon {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* =========================================
+   Microphone Button - Voice Input
+   ========================================= */
+
+.ai-mic-button {
+  color: var(--text-secondary);
+}
+
+.ai-mic-button:hover:not(.ai-mic-button--active) {
+  color: var(--color-error);
+}
+
+/* Active Listening State */
+.ai-mic-button--active {
+  color: #fff;
+  background: linear-gradient(
+    135deg,
+    rgba(255, 107, 107, 0.4) 0%,
+    rgba(255, 107, 107, 0.3) 100%
+  );
+  box-shadow:
+    var(--neu-raised),
+    0 0 30px rgba(255, 107, 107, 0.4),
+    inset 0 0 20px rgba(255, 107, 107, 0.2);
+  transform: translateY(-2px);
+}
+
+/* Pulse Animation for Active Mic */
+.ai-mic-pulse {
+  position: absolute;
+  inset: -4px;
+
+  border: 2px solid var(--color-error);
+  border-radius: var(--radius-lg);
+
+  animation: micPulse 1.5s ease-out infinite;
+  pointer-events: none;
+}
+
+.ai-mic-pulse--delay {
+  animation-delay: 0.75s;
+}
+
+@keyframes micPulse {
+  0% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(1.4);
+  }
+}
+
+/* =========================================
+   Send Button - Primary Action
+   ========================================= */
+
+.ai-send-button {
+  position: relative;
+  overflow: hidden;
+}
+
+.ai-send-button:not(:disabled) {
+  color: #fff;
+  background: linear-gradient(
+    135deg,
+    rgba(80, 81, 249, 0.5) 0%,
+    rgba(30, 167, 255, 0.4) 100%
+  );
+  box-shadow:
+    var(--neu-raised),
+    0 0 20px rgba(80, 81, 249, 0.3);
+}
+
+.ai-send-button:hover:not(:disabled) {
+  box-shadow:
+    var(--neu-raised-lg),
+    0 0 30px rgba(80, 81, 249, 0.5);
+  transform: translateY(-2px) scale(1.05);
+}
+
+.ai-send-button:active:not(:disabled) {
+  box-shadow:
+    var(--neu-pressed),
+    0 0 15px rgba(80, 81, 249, 0.2);
+  transform: translateY(0) scale(0.98);
+}
+
+/* Glow Effect for Send Button */
+.ai-button__glow {
+  position: absolute;
+  inset: -20px;
+
+  background: radial-gradient(
+    ellipse at center,
+    rgba(80, 81, 249, 0.3) 0%,
+    rgba(30, 167, 255, 0.2) 40%,
+    transparent 70%
+  );
+
+  pointer-events: none;
+  filter: blur(20px);
+  opacity: 0;
+  transition: opacity var(--transition-base);
+}
+
+.ai-send-button:hover:not(:disabled) .ai-button__glow {
+  opacity: 1;
+}
+
+/* =========================================
+   Responsive Design
+   ========================================= */
+
+@media (max-width: 968px) {
+  .ai-bar {
+    margin: var(--space-md);
+    margin-bottom: 0;
+    padding: var(--space-md) var(--space-lg);
+  }
+
+  .ai-bar__messages {
+    max-height: 150px;
+  }
+
+  .ai-message {
+    padding: var(--space-sm) var(--space-md);
+  }
+
+  .ai-control-button {
+    width: 44px;
+    height: 44px;
+  }
+}
+
+@media (max-width: 640px) {
+  .ai-bar {
+    margin: 0;
+    padding: var(--space-md);
+    border-radius: 0;
+    border: none;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+  }
+
+  .ai-bar__messages {
+    max-height: 120px;
+  }
+
+  .ai-message--user,
+  .ai-message--assistant,
+  .ai-message--system {
+    max-width: 90%;
+  }
+
+  .ai-input-field {
+    font-size: 0.875rem;
+    padding: var(--space-sm) var(--space-md);
+  }
+
+  .ai-control-button {
+    width: 40px;
+    height: 40px;
+    font-size: 1.125rem;
+  }
+
+  .ai-bar__input-row {
+    gap: var(--space-sm);
+  }
+}
+
+/* =========================================
+   Light Mode Adjustments
+   ========================================= */
+
+[data-theme="light"] .ai-bar {
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.9) 0%,
+    rgba(245, 247, 250, 0.85) 100%
+  );
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  border-bottom: none;
+  box-shadow:
+    var(--neu-raised-lg),
+    0 -10px 40px rgba(0, 0, 0, 0.08),
+    inset 0 1px 1px rgba(255, 255, 255, 0.8);
+}
+
+[data-theme="light"] .ai-bar__glow {
+  background: radial-gradient(
+    ellipse at center,
+    rgba(80, 81, 249, 0.1) 0%,
+    rgba(30, 167, 255, 0.05) 40%,
+    transparent 70%
+  );
+}
+
+[data-theme="light"] .ai-message--user {
+  background: linear-gradient(
+    135deg,
+    rgba(80, 81, 249, 0.08) 0%,
+    rgba(30, 167, 255, 0.06) 100%
+  );
+  border: 1px solid rgba(80, 81, 249, 0.15);
+}
+
+[data-theme="light"] .ai-message--assistant {
+  background: linear-gradient(
+    135deg,
+    rgba(140, 100, 230, 0.08) 0%,
+    rgba(100, 60, 200, 0.05) 100%
+  );
+  border: 1px solid rgba(140, 100, 230, 0.12);
+}
+
+[data-theme="light"] .ai-message--system {
+  background: linear-gradient(
+    135deg,
+    rgba(245, 158, 11, 0.08) 0%,
+    rgba(245, 158, 11, 0.04) 100%
+  );
+  border: 1px solid rgba(245, 158, 11, 0.15);
+}
+
+/* =========================================
+   Accessibility - Reduced Motion
+   ========================================= */
+
+@media (prefers-reduced-motion: reduce) {
+  .ai-message {
+    animation: none;
+  }
+
+  .ai-mic-pulse {
+    animation: none;
+  }
+
+  .ai-bar__messages {
+    scroll-behavior: auto;
+  }
+}

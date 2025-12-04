@@ -1,0 +1,514 @@
+/* =========================================
+   TopBar Component - 3D Neumorphic Styling
+   Premium header with gradients and glow effects
+   ========================================= */
+
+.topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-lg);
+
+  padding: var(--space-md) var(--space-xl);
+  background: var(--bg-card);
+
+  border-bottom: 1px solid var(--border-subtle);
+  box-shadow: var(--neu-raised-sm);
+
+  position: sticky;
+  top: 0;
+  z-index: var(--z-sticky);
+
+  transition: box-shadow var(--transition-base);
+}
+
+/* =========================================
+   Left Section - Breadcrumbs & Badges
+   ========================================= */
+
+.topbar__left {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+  flex: 0 1 auto;
+}
+
+/* Breadcrumbs with Gradient Text */
+.topbar__breadcrumbs {
+  display: flex;
+  align-items: center;
+}
+
+.breadcrumbs {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+
+.breadcrumbs__item {
+  color: var(--text-secondary);
+  transition: color var(--transition-base);
+  white-space: nowrap;
+}
+
+.breadcrumbs__item--active {
+  background: linear-gradient(135deg, #5051F9 0%, #1EA7FF 50%, #5051F9 100%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-weight: 600;
+  font-size: 1rem;
+
+  /* Subtle glow effect */
+  filter: drop-shadow(0 0 8px rgba(80, 81, 249, 0.3));
+}
+
+.breadcrumbs__separator {
+  color: var(--text-tertiary);
+  font-size: 1rem;
+  user-select: none;
+}
+
+/* Meta Badges Container */
+.topbar__meta {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  flex-wrap: wrap;
+}
+
+/* =========================================
+   Badges with Glow Effects
+   ========================================= */
+
+.badge {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-xs);
+
+  padding: 6px 12px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+
+  background: var(--bg-elevated);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--neu-inset-sm);
+
+  overflow: hidden;
+  user-select: none;
+}
+
+.badge__glow {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.3;
+  filter: blur(8px);
+  transition: opacity var(--transition-base);
+}
+
+.badge:hover .badge__glow {
+  opacity: 0.5;
+}
+
+/* Methodology Badge - Blue Glow */
+.badge--methodology {
+  color: #1EA7FF;
+  border: 1px solid rgba(30, 167, 255, 0.2);
+}
+
+.badge--methodology .badge__glow {
+  background: radial-gradient(ellipse at center, rgba(30, 167, 255, 0.4) 0%, transparent 70%);
+}
+
+/* Pending Badge - Warning Glow */
+.badge--pending {
+  color: #F59E0B;
+  border: 1px solid rgba(245, 158, 11, 0.2);
+}
+
+.badge--pending .badge__glow {
+  background: radial-gradient(ellipse at center, rgba(245, 158, 11, 0.4) 0%, transparent 70%);
+}
+
+.badge__count {
+  font-weight: 700;
+  font-size: 0.875rem;
+}
+
+.badge__label {
+  font-weight: 500;
+  opacity: 0.9;
+}
+
+/* =========================================
+   Right Section - View Switcher & Controls
+   ========================================= */
+
+.topbar__right {
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+  flex: 1 1 auto;
+  justify-content: flex-end;
+}
+
+/* =========================================
+   View Switcher - Inset Container with Pills
+   ========================================= */
+
+.topbar__view-switcher {
+  flex: 0 1 auto;
+}
+
+.view-switcher {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-xs);
+
+  padding: 4px;
+  background: var(--bg-input);
+  border-radius: var(--radius-xl);
+  box-shadow: var(--neu-inset-sm);
+
+  overflow-x: auto;
+  scrollbar-width: none; /* Firefox */
+}
+
+.view-switcher::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, Edge */
+}
+
+/* View Pills */
+.view-pill {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 8px 16px;
+  min-width: 80px;
+  border: none;
+  border-radius: var(--radius-lg);
+
+  font-family: var(--font-primary);
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--text-secondary);
+  white-space: nowrap;
+
+  background: transparent;
+  cursor: pointer;
+
+  transition: all var(--transition-base);
+  user-select: none;
+}
+
+.view-pill:hover:not(.view-pill--active) {
+  color: var(--text-primary);
+  background: var(--bg-elevated);
+  box-shadow: var(--neu-raised-sm);
+}
+
+.view-pill:active:not(.view-pill--active) {
+  transform: scale(0.98);
+}
+
+/* Active Pill - Raised with Glow */
+.view-pill--active {
+  color: var(--text-primary);
+  font-weight: 600;
+
+  background: linear-gradient(135deg,
+    var(--bg-elevated) 0%,
+    var(--bg-card) 100%
+  );
+  box-shadow:
+    var(--neu-raised-sm),
+    0 0 20px rgba(80, 81, 249, 0.15);
+}
+
+.view-pill__text {
+  position: relative;
+  z-index: 1;
+}
+
+.view-pill__glow {
+  position: absolute;
+  inset: -4px;
+
+  background: radial-gradient(
+    ellipse at center,
+    rgba(80, 81, 249, 0.2) 0%,
+    transparent 70%
+  );
+
+  border-radius: var(--radius-lg);
+  pointer-events: none;
+  filter: blur(10px);
+  opacity: 0.6;
+}
+
+/* =========================================
+   Control Buttons - Notifications & Theme
+   ========================================= */
+
+.topbar__control {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  border: none;
+  border-radius: var(--radius-lg);
+
+  background: linear-gradient(145deg, var(--bg-elevated), var(--bg-card));
+  box-shadow: var(--neu-raised-sm);
+
+  color: var(--text-secondary);
+  cursor: pointer;
+
+  transition: all var(--transition-base);
+}
+
+.topbar__control:hover {
+  color: var(--text-primary);
+  box-shadow: var(--neu-raised);
+  transform: translateY(-1px);
+}
+
+.topbar__control:active {
+  box-shadow: var(--neu-pressed);
+  transform: translateY(0);
+}
+
+/* Notifications Button */
+.topbar__notifications {
+  position: relative;
+}
+
+.topbar__icon {
+  width: 20px;
+  height: 20px;
+}
+
+.topbar__notification-dot {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+
+  width: 8px;
+  height: 8px;
+
+  background: #FF6B6B;
+  border: 2px solid var(--bg-card);
+  border-radius: 50%;
+
+  box-shadow: 0 0 10px rgba(255, 107, 107, 0.6);
+
+  animation: pulse-notification 2s ease-in-out infinite;
+}
+
+@keyframes pulse-notification {
+  0%, 100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.7;
+    transform: scale(1.1);
+  }
+}
+
+/* =========================================
+   Avatar - Premium Shadow Effect
+   ========================================= */
+
+.topbar__avatar {
+  position: relative;
+  padding: 0;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+
+  transition: transform var(--transition-base);
+}
+
+.topbar__avatar:hover {
+  transform: scale(1.05);
+}
+
+.topbar__avatar:active {
+  transform: scale(0.98);
+}
+
+.avatar {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 44px;
+  height: 44px;
+
+  background: linear-gradient(135deg,
+    rgba(80, 81, 249, 0.3) 0%,
+    rgba(30, 167, 255, 0.3) 100%
+  );
+  border-radius: var(--radius-round);
+
+  overflow: hidden;
+
+  /* Premium shadow with glow */
+  box-shadow:
+    0 0 20px rgba(80, 81, 249, 0.3),
+    0 4px 8px rgba(0, 0, 0, 0.2),
+    var(--neu-raised-sm);
+}
+
+.avatar__initials {
+  position: relative;
+  z-index: 2;
+
+  font-size: 0.875rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+
+  text-shadow: 0 0 10px rgba(80, 81, 249, 0.4);
+}
+
+.avatar__glow {
+  position: absolute;
+  inset: -8px;
+
+  background: radial-gradient(
+    ellipse at center,
+    rgba(80, 81, 249, 0.4) 0%,
+    rgba(30, 167, 255, 0.3) 40%,
+    transparent 70%
+  );
+
+  pointer-events: none;
+  filter: blur(12px);
+  opacity: 0.6;
+
+  transition: opacity var(--transition-base);
+}
+
+.topbar__avatar:hover .avatar__glow {
+  opacity: 0.9;
+}
+
+/* =========================================
+   Responsive Design
+   ========================================= */
+
+@media (max-width: 1200px) {
+  .view-switcher {
+    overflow-x: auto;
+  }
+
+  .view-pill {
+    min-width: 70px;
+    padding: 8px 12px;
+  }
+}
+
+@media (max-width: 968px) {
+  .topbar {
+    flex-wrap: wrap;
+    padding: var(--space-md);
+  }
+
+  .topbar__left {
+    flex: 1 1 100%;
+    order: 1;
+  }
+
+  .topbar__right {
+    flex: 1 1 100%;
+    order: 2;
+    justify-content: space-between;
+  }
+
+  .topbar__view-switcher {
+    flex: 1 1 auto;
+    max-width: calc(100% - 200px);
+  }
+
+  .view-pill {
+    min-width: 60px;
+    padding: 6px 10px;
+    font-size: 0.8125rem;
+  }
+}
+
+@media (max-width: 640px) {
+  .topbar {
+    gap: var(--space-md);
+  }
+
+  .breadcrumbs {
+    font-size: 0.8125rem;
+  }
+
+  .breadcrumbs__item--active {
+    font-size: 0.875rem;
+  }
+
+  .topbar__meta {
+    gap: var(--space-xs);
+  }
+
+  .badge {
+    padding: 4px 8px;
+    font-size: 0.6875rem;
+  }
+
+  .view-pill {
+    min-width: 50px;
+    padding: 6px 8px;
+    font-size: 0.75rem;
+  }
+
+  .topbar__control,
+  .avatar {
+    width: 40px;
+    height: 40px;
+  }
+
+  .topbar__icon {
+    width: 18px;
+    height: 18px;
+  }
+}
+
+/* =========================================
+   Light Mode Adjustments
+   ========================================= */
+
+[data-theme="light"] .breadcrumbs__item--active {
+  filter: drop-shadow(0 0 6px rgba(80, 81, 249, 0.2));
+}
+
+[data-theme="light"] .avatar {
+  box-shadow:
+    0 0 15px rgba(80, 81, 249, 0.2),
+    0 3px 6px rgba(0, 0, 0, 0.1),
+    var(--neu-raised-sm);
+}
+
+[data-theme="light"] .view-pill--active {
+  box-shadow:
+    var(--neu-raised-sm),
+    0 0 15px rgba(80, 81, 249, 0.1);
+}

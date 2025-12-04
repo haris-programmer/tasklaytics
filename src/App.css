@@ -1,0 +1,101 @@
+/* App Layout Styles */
+
+.app {
+  display: flex;
+  min-height: 100vh;
+  background: var(--bg-page);
+  color: var(--text-primary);
+}
+
+.app-main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  margin-left: 280px; /* LeftToolbar width */
+  min-height: 100vh;
+  position: relative;
+}
+
+.app-canvas {
+  flex: 1;
+  padding: var(--space-lg);
+  padding-bottom: 140px; /* Space for AI bar */
+  overflow-y: auto;
+  background: var(--bg-page);
+}
+
+/* Flow mode indicator */
+.app[data-flow-mode="true"] {
+  --flow-mode-border: 2px dashed var(--color-primary);
+}
+
+.app[data-flow-mode="true"] .app-canvas {
+  border: var(--flow-mode-border);
+  border-radius: var(--radius-lg);
+  margin: var(--space-md);
+}
+
+.app[data-flow-mode="true"]::before {
+  content: 'Flow Mode Active';
+  position: fixed;
+  top: var(--space-md);
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--color-primary);
+  color: white;
+  padding: var(--space-xs) var(--space-md);
+  border-radius: var(--radius-md);
+  font-size: var(--text-sm);
+  font-weight: 600;
+  z-index: 1000;
+  box-shadow: var(--neu-raised);
+}
+
+/* Responsive adjustments */
+@media (max-width: 1024px) {
+  .app-main {
+    margin-left: 0;
+  }
+}
+
+@media (max-width: 768px) {
+  .app-canvas {
+    padding: var(--space-md);
+    padding-bottom: 160px;
+  }
+}
+
+/* Custom scrollbar for app canvas */
+.app-canvas::-webkit-scrollbar {
+  width: 8px;
+}
+
+.app-canvas::-webkit-scrollbar-track {
+  background: var(--bg-input);
+  border-radius: var(--radius-sm);
+}
+
+.app-canvas::-webkit-scrollbar-thumb {
+  background: var(--border-color);
+  border-radius: var(--radius-sm);
+}
+
+.app-canvas::-webkit-scrollbar-thumb:hover {
+  background: var(--text-tertiary);
+}
+
+/* Overlay backdrop for modals */
+.app > [class*="Panel"],
+.app > [class*="Editor"] {
+  z-index: 100;
+}
+
+/* Smooth transitions */
+.app,
+.app-main,
+.app-canvas {
+  transition:
+    background var(--transition-base),
+    color var(--transition-base),
+    margin var(--transition-base);
+}

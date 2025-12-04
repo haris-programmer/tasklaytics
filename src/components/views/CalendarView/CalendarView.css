@@ -1,0 +1,201 @@
+/* =========================================
+   CalendarView Component Styles
+   Month Grid Calendar with Neumorphic Design
+   ========================================= */
+
+.calendar-view {
+  padding: var(--space-lg);
+  height: 100%;
+  overflow: auto;
+}
+
+.calendar {
+  background: var(--bg-card);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--neu-inset);
+  padding: var(--space-lg);
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+}
+
+/* ---- Calendar Header ---- */
+.calendar-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: var(--space-md);
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.calendar-header__title {
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.calendar-header__subtitle {
+  font-size: 11px;
+  color: var(--text-muted);
+  font-family: var(--font-mono);
+}
+
+/* ---- Calendar Grid ---- */
+.calendar-grid {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+  overflow: auto;
+}
+
+.calendar-weekdays {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: var(--space-xs);
+  margin-bottom: var(--space-sm);
+}
+
+.calendar-weekday {
+  text-align: center;
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  padding: var(--space-xs);
+  background: var(--bg-input);
+  border-radius: var(--radius-sm);
+  box-shadow: var(--neu-inset-sm);
+}
+
+.calendar-week {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: var(--space-xs);
+  flex: 1;
+  min-height: 100px;
+}
+
+/* ---- Calendar Days ---- */
+.calendar-day {
+  background: var(--bg-input);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  padding: var(--space-xs);
+  box-shadow: var(--neu-inset-sm);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+  transition: all var(--transition-base);
+  min-height: 80px;
+}
+
+.calendar-day:hover {
+  background: var(--bg-elevated);
+  box-shadow: var(--neu-raised-sm);
+  transform: translateY(-1px);
+}
+
+.calendar-day--in-month {
+  border-color: var(--border-color);
+}
+
+.calendar-day--other-month {
+  opacity: 0.4;
+}
+
+.calendar-day__date {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-primary);
+  font-family: var(--font-mono);
+}
+
+.calendar-day--other-month .calendar-day__date {
+  color: var(--text-muted);
+}
+
+.calendar-day__events {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  flex: 1;
+  overflow-y: auto;
+}
+
+/* ---- Event Pills ---- */
+.calendar-pill {
+  padding: 4px 6px;
+  background: linear-gradient(135deg, var(--color-primary), var(--color-primary-light));
+  border-radius: var(--radius-sm);
+  font-size: 10px;
+  font-weight: 500;
+  color: #ffffff;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1), 0 0 6px var(--color-primary-glow);
+  transition: all var(--transition-fast);
+}
+
+.calendar-pill:hover {
+  transform: scale(1.02);
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.15), 0 0 8px var(--color-primary-glow);
+}
+
+/* ---- Custom Scrollbar for Events ---- */
+.calendar-day__events::-webkit-scrollbar {
+  width: 3px;
+}
+
+.calendar-day__events::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.calendar-day__events::-webkit-scrollbar-thumb {
+  background: var(--border-color);
+  border-radius: var(--radius-sm);
+}
+
+/* ---- Responsive Adjustments ---- */
+@media (max-width: 1024px) {
+  .calendar-week {
+    min-height: 80px;
+  }
+
+  .calendar-day {
+    min-height: 60px;
+  }
+}
+
+@media (max-width: 768px) {
+  .calendar-view {
+    padding: var(--space-md);
+  }
+
+  .calendar-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--space-xs);
+  }
+
+  .calendar-week {
+    min-height: 60px;
+  }
+
+  .calendar-day {
+    min-height: 50px;
+    padding: 4px;
+  }
+
+  .calendar-day__date {
+    font-size: 11px;
+  }
+
+  .calendar-pill {
+    font-size: 9px;
+    padding: 2px 4px;
+  }
+}
